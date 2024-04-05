@@ -1,0 +1,27 @@
+API Routes
+1.GET /movies
+Description: Retrieves a list of movies to be displayed on the home page. This endpoint may also support pagination to handle large sets of data.
+
+2.GET /movies/search
+Description: Supports searching for movies based on different criteria such as title, genre, or release year. Query parameters can be used to filter the search results.
+Query Parameters:
+title: The title of the movie.
+genre: The genre of the movie.
+releaseYear: The release year of the movie.
+
+3.GET /movies/{:id}
+Description: Retrieves detailed information about a specific movie by its unique identifier (ID).
+
+
+4. POST  /create/movie
+
+
+MongoDB Schema Design
+{
+  "_id": "ObjectId('...')",
+  "title": "Movie Title",
+  "genre": ["Genre1", "Genre2"],
+  "releaseYear": 2021,
+  "description": "Brief description of the movie.",
+  "thumbnailUrl": "https://example.com/thumbnail.jpg"
+}
