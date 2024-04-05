@@ -13,7 +13,7 @@ mongoose
   .catch((err) => console.error("Could not connect to MongoDB:", err));
 
 app.get("/checkapi", (req: Request, res: Response) => {
-  res.send("Hello there, Api is working");
+  res.send("Hello there, Api is working Yeahhh");
 });
 
 app.listen(PORT, () => {
