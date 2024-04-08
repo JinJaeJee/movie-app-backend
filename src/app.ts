@@ -1,19 +1,22 @@
 import { configDotenv } from "dotenv";
 import express, { Request, Response } from "express";
-import mongoose from "mongoose";
+import cors from "cors";
+import { connectToDatabase } from "./config";
+import movieRoutes from "./routes/movies/movies.route";
 
 configDotenv();
 
 const app = express();
-const PORT = process.env.API_PORT || 8080;
+const PORT = process.env.API_PORT || 3333;
 
-mongoose
-  .connect(process.env.DB_CONNECTION)
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.error("Could not connect to MongoDB:", err));
+app.use(express.json());
+app.use(cors());
+
+connectToDatabase();
+app.use("/movies", movieRoutes);
 
 app.get("/checkapi", (req: Request, res: Response) => {
-  res.send("Hello there, Api is working Yeahhh");
+  res.json({ message: "Welcome to JUST-SERVICE API!" });
 });
 
 app.listen(PORT, () => {
