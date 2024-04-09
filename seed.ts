@@ -3,6 +3,33 @@ const { MongoClient } = require("mongodb");
 const url = "mongodb://mongoadmin:secret@localhost:27017";
 const dbName = "movieDB";
 
+const users = [
+  {
+    fullname: "Super Admin",
+    role: "Admin",
+    password: "AEFs23Cddldf456dsfs",
+    image: "",
+  },
+  {
+    fullname: "John Doe",
+    role: "Staff",
+    password: "Asdfsd#6456ldf456dsfs",
+    image: "",
+  },
+  {
+    fullname: "Mea Moola",
+    role: "User",
+    password: "As3Cddldf456S#dsfs",
+    image: "",
+  },
+  {
+    fullname: "Old Laoove",
+    role: "Vip",
+    password: "AEFs3Cddldf876sfs",
+    image: "",
+  },
+];
+
 const movies = [
   {
     id: 1,

@@ -14,6 +14,7 @@ app.use(cors());
 
 connectToDatabase();
 app.use("/movies", movieRoutes);
+app.use("/auth");
 
 app.get("/checkapi", (req: Request, res: Response) => {
   res.json({ message: "Welcome to JUST-SERVICE API!" });
