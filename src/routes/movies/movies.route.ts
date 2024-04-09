@@ -45,4 +45,38 @@ router.get("/getOne/:id", async (req: Request, res: Response) => {
   }
 });
 
+router.get("/search", async (req: Request, res: Response) => {
+  let { query } = req.query;
+  const client = await MongoClient.connect(url);
+  const db = client.db(dbName);
+  const moviesCollection = db.collection(collectionName);
+
+  if (typeof query === "string") {
+    query = query.replace(/_/g, " ");
+    query = query.charAt(0).toUpperCase() + query.slice(1);
+  }
+
+  try {
+    const moviesCursor = await moviesCollection.find({
+      $or: [
+        { title: { $regex: new RegExp(query as string, "i") } },
+        { genre: { $regex: new RegExp(query as string, "i") } },
+        { releaseYear: parseInt(query as string) || 0 },
+      ],
+    });
+
+    const movies = await moviesCursor.toArray();
+
+    if (movies.length === 0) {
+      return res.status(404).json({ error: "No movies found" });
+    }
+
+    client.close();
+    res.json(movies);
+  } catch (err) {
+    console.error("Error searching for movies:", err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 export default router;
