@@ -6,24 +6,28 @@ const dbName = "movieDB";
 
 const users = [
   {
+    username: "superadmin",
     fullname: "Super Admin",
     role: "Admin",
     password: "AEFs23Cddldf456dsfs",
     image: "",
   },
   {
+    username: "john1245",
     fullname: "John Doe",
     role: "Staff",
     password: "Asdfsd#6456ldf456dsfs",
     image: "",
   },
   {
+    username: "mea1245",
     fullname: "Mea Moola",
     role: "User",
     password: "As3Cddldf456S#dsfs",
     image: "",
   },
   {
+    username: "aoove568",
     fullname: "Old Laoove",
     role: "Vip",
     password: "AEFs3Cddldf876sfs",
