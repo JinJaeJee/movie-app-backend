@@ -3,9 +3,9 @@ import express, { Request, Response } from "express";
 import { MongoClient, ObjectId } from "mongodb";
 
 configDotenv();
-export const router = express.Router();
-export const url = process.env.DB_CONNECTION;
-export const dbName = "movieDB";
+const router = express.Router();
+const url = process.env.DB_CONNECTION;
+const dbName = "movieDB";
 const collectionName = "movies";
 
 router.get("/getAlls", async (req: Request, res: Response) => {

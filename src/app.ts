@@ -3,7 +3,7 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import { connectToDatabase } from "./config";
 import movieRoutes from "./routes/movies/movies.route";
-
+import loginRoutes from "./routes/login/login.route";
 configDotenv();
 
 const app = express();
@@ -14,7 +14,7 @@ app.use(cors());
 
 connectToDatabase();
 app.use("/movies", movieRoutes);
-app.use("/auth");
+app.use("/auth", loginRoutes);
 
 app.get("/checkapi", (req: Request, res: Response) => {
   res.json({ message: "Welcome to JUST-SERVICE API!" });

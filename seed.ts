@@ -1,4 +1,5 @@
 const { MongoClient } = require("mongodb");
+import bcrypt from "bcryptjs";
 
 const url = "mongodb://mongoadmin:secret@localhost:27017";
 const dbName = "movieDB";
@@ -685,9 +686,23 @@ async function seedData() {
 
     const db = client.db(dbName);
     const collection = db.collection("movies");
+    const moviesInsertResult = await collection.insertMany(movies);
+    console.log("Inserted documents =>", moviesInsertResult);
 
-    const insertResult = await collection.insertMany(movies);
-    console.log("Inserted documents =>", insertResult);
+    const usersCollection = db.collection("users");
+
+    const hashedUsers = await Promise.all(
+      users.map(async (user) => {
+        const hashedPassword = await bcrypt.hash(user.password, 10);
+        return {
+          ...user,
+          password: hashedPassword,
+        };
+      })
+    );
+
+    const usersInsertResult = await usersCollection.insertMany(hashedUsers);
+    console.log("Inserted users =>", usersInsertResult);
   } catch (err) {
     console.error(err);
   } finally {
