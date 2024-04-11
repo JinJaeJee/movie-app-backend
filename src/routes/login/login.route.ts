@@ -40,6 +40,7 @@ router.post("/login", async (req: Request, res: Response) => {
       fullname: user.fullname,
       role: user.role,
       image: user.image,
+      userID: user._id,
     };
 
     res.json({ token, userProfile });

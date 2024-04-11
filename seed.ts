@@ -4,34 +4,62 @@ import bcrypt from "bcryptjs";
 const url = "mongodb://mongoadmin:secret@localhost:27017";
 const dbName = "movieDB";
 
+const fav_movies = [
+  {
+    userId: "66164e91172400ca2336ea17",
+    movieId: "66164e91172400ca2336e9db",
+    thumbnailUrl: "https://m.media-amazon.com/images/I/71715eBi1sL.jpg",
+    title: "The Shawshank Redemption",
+  },
+  {
+    userId: "66164e91172400ca2336ea17",
+    movieId: "66164e91172400ca2336e9db",
+    thumbnailUrl:
+      "https://m.media-amazon.com/images/I/61ISRoGsyfL._AC_UF894,1000_QL80_.jpg",
+    title: "The Godfather",
+  },
+  {
+    userId: "66164e91172400ca2336ea17",
+    movieId: "66164e91172400ca2336e9db",
+    thumbnailUrl: "https://m.media-amazon.com/images/I/81j0OkNZ05L.jpg",
+    title: "Pulp Fiction",
+  },
+  {
+    userId: "66164e91172400ca2336ea17",
+    movieId: "66164e91172400ca2336e9db",
+    thumbnailUrl: "https://i.ebayimg.com/images/g/bLUAAOSwtqtk5NQW/s-l1600.jpg",
+    title: "The Dark Knight",
+  },
+];
+
 const users = [
   {
     username: "superadmin",
     fullname: "Super Admin",
     role: "Admin",
     password: "AEFs23Cddldf456dsfs",
-    image: "",
+    image: "https://randomuser.me/api/portraits/men/45.jpg",
   },
   {
     username: "john1245",
     fullname: "John Doe",
     role: "Staff",
     password: "Asdfsd#6456ldf456dsfs",
-    image: "",
+    image: "https://randomuser.me/api/portraits/men/11.jpg",
   },
   {
     username: "mea1245",
     fullname: "Mea Moola",
     role: "User",
     password: "As3Cddldf456S#dsfs",
-    image: "",
+    image: "https://randomuser.me/api/portraits/women/53.jpg",
   },
   {
     username: "aoove568",
     fullname: "Old Laoove",
     role: "Vip",
     password: "AEFs3Cddldf876sfs",
-    image: "",
+    image: "https://randomuser.me/api/portraits/men/37.jpg",
   },
 ];
 
@@ -707,6 +735,10 @@ async function seedData() {
 
     const usersInsertResult = await usersCollection.insertMany(hashedUsers);
     console.log("Inserted users =>", usersInsertResult);
+
+    const favMovieCollection = db.collection("fav_movies");
+    const favInsertResult = await favMovieCollection.insertMany(fav_movies);
+    console.log("Inserted fav_movies =>", favInsertResult);
   } catch (err) {
     console.error(err);
   } finally {
