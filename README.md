@@ -13,24 +13,22 @@ Ensure you have the following installed on your system:
 git clone <repository-url>
 cd <project-directory>
 
-#### make sure you have node is 20.++ version
+## Install Dependencies
 
-#### Install Dependencies
+###### npm install
 
-npm install
+## Start MongoDB
 
-###### Start MongoDB
+###### docker-compose up -d
 
-docker-compose up -d
+## Copy Environment Variables
 
-###### Copy Environment Variables
+###### cp .env.example .env
 
-cp .env.example .env
+## Seed Database
 
-###### Seed Database
+###### ts-node seed.ts
 
-ts-node seed.ts
+## To start the backend application, run the following command:
 
-###### To start the backend application, run the following command:
-
-npm run dev
+###### npm run dev
